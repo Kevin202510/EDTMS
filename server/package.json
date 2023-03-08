@@ -1,0 +1,25 @@
+{
+  "name": "e_document_tracking_management_system",
+  "version": "1.0.0",
+  "description": "A Document tracking system design only for NEUST papaya off-campus",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [
+    "EDTMS"
+  ],
+  "author": "Kevin_Felix_Caluag_GT19-00177",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
+
