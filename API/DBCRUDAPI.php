@@ -4,7 +4,7 @@
         private $servername='localhost';
         private $username='root';
         private $password='';
-        private $dbname='lmsrm';
+        private $dbname='edtms';
         private $result=array();
         private $mysqli='';
 
@@ -55,10 +55,13 @@
             $this->sql = $result = $this->mysqli->query($sql);
         }
 
-        public function selectleftjoin($table,$table1,$attributename1,$attributename){
+        public function selectleftjoin($table,$table1,$attributename1,$attributename,$where = null){
             // $attributes = implode(',', $attributesName);
-            $sql = "SELECT * FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename";
-
+            if ($where != null) {
+                $sql = "SELECT * FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename $where";
+            }else{
+                $sql = "SELECT * FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename";
+            }
             $this->sql = $result = $this->mysqli->query($sql);
         }
 
