@@ -22,7 +22,7 @@
             <div class="col-md-8">
                 <div class="mb-3">
                     <label class="form-label">Role id</label>
-                    <select class="form-control" name="role_id" id="role_id">
+                    <select class="form-control" name="user_role_id" id="user_role_id">
                         <option>Choose Role</option>
                         <?php
                                 include_once('../API/DBCRUDAPI.php');
@@ -34,7 +34,7 @@
                                 while ($roles = mysqli_fetch_assoc($rolesList)){
                         ?>
 
-                        <option value="<?php echo $roles['id']; ?>"><?php echo $roles['display_name']; ?></option>
+                        <option value="<?php echo $roles['role_id']; ?>"><?php echo $roles['display_name']; ?></option>
 
                         <?php } ?>
                     </select>

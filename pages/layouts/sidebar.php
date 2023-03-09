@@ -32,13 +32,14 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-disc menu-icon"></i>
-              <span class="menu-title">Documents</span>
+              <span class="menu-title">Docs Management</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Send Documents</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../pages/documentTable.php">Documents</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Achieves</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Send Documents</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">File Versions</a></li>
               </ul>
             </div>

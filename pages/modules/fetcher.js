@@ -119,6 +119,7 @@ const request = async (url, params, method = "GET", trick) => {
       }
     });
   
+    // alert(modelss.id);
     let td = $("<td>");
     let group = $("<div>", { class: "btn-group" });
     $("<button>", {
