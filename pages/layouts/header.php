@@ -22,7 +22,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../assets/images/favicon.png" />
   
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../assets/js/jquery.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="../assets/js/swal.js"></script>
 </head>
 <body class="sidebar-icon-only">
