@@ -4,7 +4,7 @@
     $DBCRUDAPI = new DBCRUDAPI();
 
     if(isset($_GET['getData'])){
-        $DBCRUDAPI->select("roles","*");
+        $DBCRUDAPI->select("categories","*");
         $data = $DBCRUDAPI->sql;
         $res = array();
         while($datass = mysqli_fetch_assoc($data)){
@@ -14,9 +14,9 @@
     }
     else{
         if(isset($_POST['addNew'])){
-            $display_name = $_POST["display_name"];
+            $category_name = $_POST["category_name"];
 
-            $DBCRUDAPI->insert('roles',['display_name'=>$display_name]);
+            $DBCRUDAPI->insert('categories',['category_name'=>$category_name]);
 
              if($DBCRUDAPI){
                 echo json_encode(array("success"=>true));
@@ -27,9 +27,9 @@
         }else if(isset($_POST['update'])){
             
             $id = $_POST["id"];
-            $display_name = $_POST["display_name"];
+            $category_name = $_POST["category_name"];
 
-            $DBCRUDAPI->update('roles',['display_name'=>$display_name],"id='$id'");
+            $DBCRUDAPI->update('categories',['category_name'=>$category_name],"id='$id'");
              if($DBCRUDAPI){
                 echo json_encode(array("success"=>true));
             }else{
@@ -39,7 +39,7 @@
             
             $id = $_POST["id"];
 
-            $DBCRUDAPI->delete('roles',"id='$id'");
+            $DBCRUDAPI->delete('categories',"id='$id'");
              if($DBCRUDAPI){
                 echo json_encode(array("success"=>true));
             }else{

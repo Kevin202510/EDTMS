@@ -45,7 +45,7 @@ const request = async (url, params, method = "GET", trick) => {
   
   const showModal = () => {
     $("#formData").trigger("reset");
-    $("#modal-title").html("Add New");
+    $(".modal-title").html("Add New");
     $("#exampleModal").modal("show");
   };
   
@@ -60,6 +60,8 @@ const request = async (url, params, method = "GET", trick) => {
       "data-index": index,
     });
     $("<td>", { html: `${index + 1}.` }).appendTo(tr);
+    let td2 = $("<td>", { class: "text-wrap" });
+    let parag =$("<p>", { class: "text-wrap" });
     const attriMap = new Map(Object.entries(modelss));
     attributes.forEach((attri) => {
       if (attri == "fullName") {
@@ -113,15 +115,40 @@ const request = async (url, params, method = "GET", trick) => {
           }).appendTo(td2);
           td2.appendTo(tr);
         }
-      }
-       else {
+      }else if (attri === "created_at" || attri === "updated_at") {
+
+        let bre = $("<br>");
+        if (attri==="created_at") {
+          $("<span>", {
+            class: "badge badge-pill badge-success",
+            html: "Created At " + formatDate(new Date(attriMap.get(attri))),
+          }).appendTo(parag);
+          parag.append(bre);
+        }
+         else {
+          $("<span>", {
+            class: "badge badge-pill badge-warning",
+            html: "Updated At " + formatDate(new Date(attriMap.get(attri))),
+          }).appendTo(parag);
+        }
+      }else {
         $("<td>", { class: "text-wrap", html: attriMap.get(attri) }).appendTo(tr);
       }
     });
+
+    parag.appendTo(td2);
+    td2.appendTo(tr);
   
     // alert(modelss.id);
     let td = $("<td>");
     let group = $("<div>", { class: "btn-group" });
+    $("<button>", {
+      "data-id": index,
+      class: "btn btn-success",
+      id: "view",
+      html: "View",
+    }).appendTo(group);
+
     $("<button>", {
       "data-id": index,
       class: "btn btn-primary",
@@ -149,7 +176,7 @@ const request = async (url, params, method = "GET", trick) => {
   
   const showOnModal = (model) => {
     $("#set-model").trigger("reset");
-    $("#modal-title").html(`Update`);
+    $(".modal-title").html(`Update`);
     // console.log(model);
     Object.keys(model).map((key) => {
       if (
@@ -173,9 +200,43 @@ const request = async (url, params, method = "GET", trick) => {
       } else if (key == "user_profile") {
         $(`[id="userprofile"]`).attr(
           "src",
-          `../assets/img/profiles/${model[key]}`
+          `../assets/images/profiles/${model.email}/${model[key]}`
         );
         $(`[name='logo']`).val(model[key]).removeAttr("disabled");
+      }
+    });
+    $("#exampleModal").modal("show");
+  };
+
+  const showOnModalView = (model) => {
+    $("#set-model").trigger("reset");
+    $(".modal-title").html(`Update`);
+    // console.log(model);
+    Object.keys(model).map((key) => {
+      if (
+        $(`[name='${key}']`).length !== 0 &&
+        key != "brand_logo" &&
+        key != "user_profile"
+      ) {
+        if (typeof model[key] == "boolean") {
+          $(`[name='${key}']`).val(model[key] ? 1 : 0);
+        } else {
+          if (key !== "user_password") {
+            $(`[name='${key}']`).val(model[key]).attr("disabled", true);
+          }
+        }
+      } else if (key == "brand_logo") {
+        $(`[id="brandlogo"]`).attr(
+          "src",
+          `../assets/img/brandlogos/${model[key]}`
+        );
+        $(`[name='logo']`).val(model[key]).attr("disabled", true);
+      } else if (key == "user_profile") {
+        $(`[id="userprofile"]`).attr(
+          "src",
+          `../assets/images/profiles/${model.email}/${model[key]}`
+        );
+        $(`[name='logo']`).val(model[key]).attr("disabled", true);
       }
     });
     $("#exampleModal").modal("show");
@@ -257,4 +318,5 @@ const request = async (url, params, method = "GET", trick) => {
     update,
     save,
     remove,
+    showOnModalView,
   };

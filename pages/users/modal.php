@@ -14,8 +14,8 @@
             <input type="hidden" id="method" name="update">
             <div class="row">
                 <div class="col-md-4 text-center"> 
-                <label for="user_profile" class="form-label">Brand Logo
-                    <img id="userprofile" src="../assets/img/profiles/userlogomale.png" onerror="this.onerror=null;this.src='../assets/img/brandlogos/rusilogo.png'" class="img-thumbnail" style="height:300px">
+                <label for="user_profile" class="form-label">Profile Picture
+                    <img id="userprofile" src="../assets/images/profiles/userlogomale.png" onerror="this.onerror=null;this.src='../assets/img/brandlogos/rusilogo.png'" class="img-thumbnail" style="height:300px">
                     <input class="form-control" style="display:none;" name="user_profile" type="file" id="user_profile">
                 </label>
               </div>
@@ -34,7 +34,7 @@
                                 while ($roles = mysqli_fetch_assoc($rolesList)){
                         ?>
 
-                        <option value="<?php echo $roles['role_id']; ?>"><?php echo $roles['display_name']; ?></option>
+                        <option value="<?php echo $roles['id']; ?>"><?php echo $roles['display_name']; ?></option>
 
                         <?php } ?>
                     </select>

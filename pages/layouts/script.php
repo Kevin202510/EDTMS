@@ -1,4 +1,4 @@
-
+  
   <!-- base:js -->
   <script src="../assets/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -16,6 +16,21 @@
   <!-- Custom js for this page-->
   <script src="../assets/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+
+  <script>
+    $(document).ready(function(){
+        $("#logout").click(function(){
+            $.post(
+            "../authentication/authCrud.php",
+            {logoutUser:"logoutUser"},
+            function (data, status) {
+                window.location.href = "index.php";
+            }
+            );
+        });
+    });
+</script>
+
 </body>
 
 </html>

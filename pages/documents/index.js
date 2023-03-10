@@ -7,9 +7,16 @@ $("body").on("click", "#delete", (e) =>
   state.delete($(e.currentTarget).data("id"))
 );
 
+$("#filesearch").keyup(function () {
+    var value = $("#filesearch").val().toLowerCase();
+    $("#main-table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
 const state = {
   entity: "documents",
-  attributes: ["file_document_name","reciever_id","isRestricted"],
+  attributes: ["category_name","file_document_name","created_at","updated_at"],
   model: [],
   activeIndex: 0,
   btnSave: document.getElementById("btn-mul"),

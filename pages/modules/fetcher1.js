@@ -32,10 +32,21 @@ const request = async (url, params, method = "GET", trick) => {
       console.error(error);
     }
   };
+
+  const formatDate = (date)=>{
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
+  }
   
   const showModal = () => {
     $("#formData").trigger("reset");
-    $("#modal-title").html("Add New");
+    $(".modal-title").html("Add New");
     $("#exampleModal").modal("show");
   };
   
@@ -50,6 +61,8 @@ const request = async (url, params, method = "GET", trick) => {
       "data-index": index,
     });
     $("<td>", { html: `${index + 1}.` }).appendTo(tr);
+    let td2 = $("<td>", { class: "text-wrap" });
+    let parag =$("<p>", { class: "text-wrap" });
     const attriMap = new Map(Object.entries(modelss));
     attributes.forEach((attri) => {
       if (attri == "fullName") {
@@ -115,10 +128,31 @@ const request = async (url, params, method = "GET", trick) => {
           td2.appendTo(tr);
         }
       }
+      else if (attri === "created_at" || attri === "updated_at") {
+
+        let bre = $("<br>");
+        if (attri==="created_at") {
+          $("<span>", {
+            class: "badge badge-pill badge-success",
+            html: "Created At " + formatDate(new Date(attriMap.get(attri))),
+          }).appendTo(parag);
+          parag.append(bre);
+        }
+         else {
+          $("<span>", {
+            class: "badge badge-pill badge-warning",
+            html: "Updated At " + formatDate(new Date(attriMap.get(attri))),
+          }).appendTo(parag);
+        }
+      }
        else {
         $("<td>", { class: "text-wrap", html: attriMap.get(attri) }).appendTo(tr);
       }
     });
+
+    
+    parag.appendTo(td2);
+    td2.appendTo(tr);
   
     let td = $("<td>");
     let group = $("<div>", { class: "btn-group" });
@@ -149,7 +183,7 @@ const request = async (url, params, method = "GET", trick) => {
   
   const showOnModal = (model) => {
     $("#set-model").trigger("reset");
-    $("#modal-title").html(`Update`);
+    $(".modal-title").html(`Update`);
     // console.log(model);
     Object.keys(model).map((key) => {
       if (
@@ -257,4 +291,5 @@ const request = async (url, params, method = "GET", trick) => {
     update,
     save,
     remove,
+    formatDate,
   };

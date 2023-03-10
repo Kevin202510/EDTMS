@@ -3,9 +3,9 @@
     include_once('../../API/DBCRUDAPI.php');
     $DBCRUDAPI = new DBCRUDAPI();
 
-    // $attributes = ["users.id","users.role_id","user_profile","isMale","roles.role_display_name","users.user_fname","users.user_mname","users.user_lname","users.address","users.contact","users.DOB","users.email","users.username","users.password","users.created_at"];
+    $attributes = ["users.id","users.user_role_id","user_profile","roles.display_name","users.user_fname","users.user_mname","users.user_lname","users.address","users.contact","users.DOB","users.email","users.username","users.password","users.email_verified_at"];
     if(isset($_GET['getData'])){
-        $DBCRUDAPI->selectleftjoin("users","roles","role_id","user_role_id","WHERE (user_role_id!=1 && user_role_id !=2)");
+        $DBCRUDAPI->selectleftjoin("users","roles","id","user_role_id",$attributes,"WHERE (user_role_id!=1 && user_role_id !=2)");
         $data = $DBCRUDAPI->sql;
         $res = array();
         while($datass = mysqli_fetch_assoc($data)){
@@ -26,6 +26,10 @@
             $email = $_POST["email"];
             $username = $_POST["username"];
             $password = md5($_POST["password"]);
+
+            if (!file_exists("../../assets/images/profiles/".$email."")) {
+                mkdir("../../assets/images/profiles/".$email."", 0777, true);
+            }
 
             if(isset($_FILES['file']['name'])){
 

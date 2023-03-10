@@ -11,16 +11,8 @@
         <div class="content-wrapper">
         <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
-                <div class="card-header">
-                  <div class="d-flex justify-content-between">
-                  <h4 class="card-title">List of Document|Files</h4>
-                  <div style="float: right;" class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="filesearch">
-                      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-                  </div>
-                  </div>
-                </div>
                 <div class="card-body">
+                    <h4 class="card-title">List of Categories</h4>
                     <button style="float: right;" type="button" id="create-new" class="btn btn-success btn-rounded btn-sm"><i class="icon-plus"></i></button>
                   <div class="table-responsive">
                     <table class="table table-striped">
@@ -30,13 +22,7 @@
                             #
                           </th>
                           <th>
-                            Category
-                          </th>
-                          <th>
-                            File|Document Name
-                          </th>
-                          <th>
-                            Created | Updated
+                            Category Name
                           </th>
                           <th>
                             Action
@@ -50,7 +36,7 @@
               </div>
             </div>
         </div>
-        <?php include('documents/modal.php'); ?>
+        <?php include('categories/modal.php'); ?>
         <?php include('layouts/footer.php'); ?>
         
         <!-- partial -->
@@ -60,5 +46,5 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-  <script type="module" src="documents/index.js"></script>
+  <script type="module" src="categories/index.js"></script>
   <?php include('layouts/script.php'); ?>

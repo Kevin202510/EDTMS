@@ -1,4 +1,4 @@
-import fetch from "../modules/fetcher.js";
+import fetch from "../modules/fetcher1.js";
 
 $("body").on("click", "#edit", async (e) =>
   state.show($(e.currentTarget).data("id"))
@@ -6,18 +6,10 @@ $("body").on("click", "#edit", async (e) =>
 $("body").on("click", "#delete", (e) =>
   state.delete($(e.currentTarget).data("id"))
 );
-$("body").on("click", "#view", (e) =>
-  state.view($(e.currentTarget).data("id"))
-);
-
-$("#user_profile").change(function () {
-  var filename = $("#user_profile")[0].files[0];
-  $(`[id="userprofile"]`).attr("src", URL.createObjectURL(filename));
-});
 
 const state = {
-  entity: "users",
-  attributes: ["user_profile","display_name","fullName","DOB","username","email_verified_at","user_status"],
+  entity: "categories",
+  attributes: ["category_name"],
   model: [],
   activeIndex: 0,
   btnSave: document.getElementById("btn-mul"),
@@ -44,7 +36,7 @@ const state = {
     );
   },
   addnew: () => {
-    $(".modal-footer").show();
+    56789;
     state.btnSave.innerHTML = "Save Changes";
     state.inputMethod.setAttribute("name", "addNew");
     state.btnSave.addEventListener("click", state.save);
@@ -54,14 +46,8 @@ const state = {
   save: async (e) => {
     e.preventDefault();
     let params = $("#formData").serializeArray();
-    var fd = new FormData();
     // console.log(params);
-    params.forEach((para) => {
-      fd.append(para.name, para.value);
-    });
-    fd.append("file", $("#user_profile")[0].files[0]);
-
-    let model = await fetch.save(state.entity, fd);
+    let model = await fetch.save(state.entity, params);
     if (model) {
       $("#exampleModal").modal("hide");
       state.model = [];
@@ -70,27 +56,15 @@ const state = {
   },
   show: (i) => {
     state.activeIndex = i;
-    $(".modal-footer").show();
     state.btnSave.innerHTML = "Update Changes";
     state.inputMethod.setAttribute("name", "update");
     state.btnSave.addEventListener("click", state.update);
     state.btnSave.removeEventListener("click", state.save);
     fetch.showOnModal(state.model[i]);
   },
-  view: (i) => {
-    state.activeIndex = i;
-    $(".modal-footer").hide();
-    fetch.showOnModalView(state.model[i]);
-  },
   update: async () => {
     let params = $("#formData").serializeArray();
-    var fd = new FormData();
-    // console.log(params);
-    params.forEach((para) => {
-      fd.append(para.name, para.value);
-    });
-    fd.append("file", $("#user_profile")[0].files[0]);
-    let model = await fetch.update(state.entity, fd);
+    let model = await fetch.update(state.entity, params);
     if (model) {
       $("#exampleModal").modal("hide");
       state.model = [];

@@ -55,15 +55,31 @@
             $this->sql = $result = $this->mysqli->query($sql);
         }
 
-        public function selectleftjoin($table,$table1,$attributename1,$attributename,$where = null){
-            // $attributes = implode(',', $attributesName);
+        public function selectleftjoin($table,$table1,$attributename1,$attributename,$attributes,$where = null){
+            $attributess = implode(',', $attributes);
             if ($where != null) {
-                $sql = "SELECT * FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename $where";
+                $sql = "SELECT $attributess FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename $where";
             }else{
-                $sql = "SELECT * FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename";
+                $sql = "SELECT $attributess FROM $table LEFT JOIN $table1 ON $table1.$attributename1=$table.$attributename";
             }
             $this->sql = $result = $this->mysqli->query($sql);
         }
+
+        public function selectleftjoinauth($where){
+            $sql = "SELECT * FROM users LEFT JOIN roles ON roles.id = users.user_role_id WHERE $where";
+            $this->sql = $result = $this->mysqli->query($sql);
+        }
+
+        public function selectDocuments($attributes,$where = null){
+            $attributess = implode(',', $attributes);
+            if ($where != null) {
+                $sql = "SELECT $attributess FROM documents LEFT JOIN categories ON documents.category_id = categories.id left JOIN users ON documents.user_id=users.id $where";
+            }else{
+                $sql = "SELECT $attributess FROM documents LEFT JOIN categories ON documents.category_id = categories.id left JOIN users ON documents.user_id=users.id";
+            }
+            $this->sql = $result = $this->mysqli->query($sql);
+        }
+        
 
         public function selectleftjoin100($table,$table1,$attributename1,$attributename,$attributesName,$where = null){
             $attributes = implode(',', $attributesName);

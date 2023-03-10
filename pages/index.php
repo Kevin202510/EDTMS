@@ -1,4 +1,9 @@
 <?php include('layouts/header.php'); ?>
+<?php 
+    if(!$_SESSION['userFullname']){
+        header('Location: ../index.php');
+    }
+?>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <?php include('layouts/navbar.php'); ?>

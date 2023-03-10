@@ -3,10 +3,13 @@
     include_once('../../API/DBCRUDAPI.php');
     $DBCRUDAPI = new DBCRUDAPI();
 
+    $attributes = ["documents.id","documents.category_id","documents.user_id","documents.file_document_name","documents.isRestricted","documents.updated_at","documents.created_at","documents.id","documents.id","categories.category_name","users.user_fname","users.user_mname","users.user_lname"];
+
     if(isset($_GET['getData'])){
-        $DBCRUDAPI->select("documents","*");
+        $DBCRUDAPI->selectDocuments($attributes);
         $data = $DBCRUDAPI->sql;
         $res = array();
+        // var_dump($data);
         while($datass = mysqli_fetch_assoc($data)){
             $res[] = $datass;
         }
@@ -14,12 +17,12 @@
     }
     else{
         if(isset($_POST['addNew'])){
-            $reciever_id = $_POST["reciever_id"];
+            $user_id = $_POST["user_id"];
             $file_document_name = $_POST["file_document_name"];
-            $sender_id = $_POST["sender_id"];
+            $category_id = $_POST["category_id"];
             $isRestricted = $_POST["isRestricted"];
 
-            $DBCRUDAPI->insert('documents',['sender_id'=>$sender_id,'reciever_id'=>$reciever_id,'file_document_name'=>$file_document_name,'isRestricted'=>0]);
+            $DBCRUDAPI->insert('documents',['category_id'=>$category_id,'user_id'=>$user_id,'file_document_name'=>$file_document_name,'isRestricted'=>0]);
 
              if($DBCRUDAPI){
                 echo json_encode(array("success"=>true));
@@ -29,13 +32,13 @@
             
         }else if(isset($_POST['update'])){
             
-            $doc_id = $_POST["doc_id"];
-            $reciever_id = $_POST["reciever_id"];
+            $id = $_POST["id"];
+            $user_id = $_POST["user_id"];
             $file_document_name = $_POST["file_document_name"];
-            $sender_id = $_POST["sender_id"];
+            $category_id = $_POST["category_id"];
             $isRestricted = $_POST["isRestricted"];
 
-            $DBCRUDAPI->update('documents',['sender_id'=>$sender_id,'reciever_id'=>$reciever_id,'isRestricted'=>$isRestricted,'file_document_name'=>$file_document_name],"doc_id='$doc_id'");
+            $DBCRUDAPI->update('documents',['category_id'=>$category_id,'user_id'=>$user_id,'isRestricted'=>$isRestricted,'file_document_name'=>$file_document_name],"id='$id'");
              if($DBCRUDAPI){
                 echo json_encode(array("success"=>true));
             }else{
@@ -43,9 +46,9 @@
             }
         }else if(isset($_POST['delete'])){
             
-            $doc_id = $_POST["doc_id"];
+            $id = $_POST["id"];
 
-            $DBCRUDAPI->delete('documents',"doc_id='$doc_id'");
+            $DBCRUDAPI->delete('documents',"id='$id'");
              if($DBCRUDAPI){
                 echo json_encode(array("success"=>true));
             }else{
