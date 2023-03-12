@@ -86,7 +86,11 @@ const state = {
   },
   view: (i) => {
     // fetch.showOnModalView(state.model[i]);
-    // $("#viewDocument").modal("show");
+    $("#viewDocument").modal("show");
+    $("#documentto").attr(
+      "src",
+      `../assets/documents/${state.model[i].email}/${state.model[i].file_document_name}`
+    );
   },
   update: async () => {
     let params = $("#formData").serializeArray();

@@ -10,10 +10,6 @@
       <div class="main-panel">
         <div class="content-wrapper">
         <div class="col-lg-12 grid-margin stretch-card">
-              <embed
-                src="../assets/documents/administrator@gmail.com/Seek.pdf"
-                type="application/pdf"
-              />
               <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-between">

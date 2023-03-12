@@ -3,7 +3,7 @@
     include_once('../../API/DBCRUDAPI.php');
     $DBCRUDAPI = new DBCRUDAPI();
 
-    $attributes = ["documents.id","documents.document_name","documents.category_id","documents.user_id","documents.file_document_name","documents.isRestricted","documents.updated_at","documents.created_at","documents.id","documents.id","categories.category_name","users.user_fname","users.user_mname","users.user_lname"];
+    $attributes = ["documents.id","documents.document_name","documents.category_id","documents.user_id","documents.file_document_name","documents.isRestricted","documents.updated_at","documents.created_at","documents.id","documents.id","categories.category_name","users.user_fname","users.user_mname","users.user_lname","users.email"];
 
     if(isset($_GET['getData'])){
         $whereClause = "documents.user_id=".$_GET['user_id']."";
