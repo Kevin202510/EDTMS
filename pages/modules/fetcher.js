@@ -201,7 +201,8 @@ const showOnModal = (model) => {
     if (
       $(`[name='${key}']`).length !== 0 &&
       key != "brand_logo" &&
-      key != "user_profile"
+      key != "user_profile" &&
+      key != "file_document_name"
     ) {
       if (typeof model[key] == "boolean") {
         $(`[name='${key}']`).val(model[key] ? 1 : 0);
@@ -222,6 +223,13 @@ const showOnModal = (model) => {
         `../assets/images/profiles/${model.email}/${model[key]}`
       );
       $(`[name='logo']`).val(model[key]).removeAttr("disabled");
+    } else if (key == "file_document_name") {
+      // alert("Asd");
+      // $(`[id="filedocumentname"]`).attr(
+      //   "src",
+      //   `../assets/images/profiles/${model.email}/${model[key]}`
+      // );
+      $(`[name='logo']`).val(model[key]).attr("disabled", true);
     }
   });
   $("#exampleModal").modal("show");
@@ -258,7 +266,7 @@ const showOnModalView = (model) => {
       );
       $(`[name='logo']`).val(model[key]).attr("disabled", true);
     } else if (key == "file_document_name") {
-      alert("Asd");
+      // alert("Asd");
       // $(`[id="filedocumentname"]`).attr(
       //   "src",
       //   `../assets/images/profiles/${model.email}/${model[key]}`

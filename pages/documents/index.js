@@ -82,10 +82,11 @@ const state = {
     state.inputMethod.setAttribute("name", "update");
     state.btnSave.addEventListener("click", state.update);
     state.btnSave.removeEventListener("click", state.save);
-    fetch.showOnModalView(state.model[i]);
+    fetch.showOnModal(state.model[i]);
   },
   view: (i) => {
-    alert("asd");
+    // fetch.showOnModalView(state.model[i]);
+    // $("#viewDocument").modal("show");
   },
   update: async () => {
     let params = $("#formData").serializeArray();
