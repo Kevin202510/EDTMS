@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" id="formData">
+        <form method="post" id="formData" enctype="multipart/form-data">
             <input type="hidden" name="id" id="id">
             <input type="hidden" name="logo" id="logo">
             <input type="hidden" id="method" name="update">

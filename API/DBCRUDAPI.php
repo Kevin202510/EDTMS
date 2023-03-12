@@ -65,15 +65,16 @@
             $this->sql = $result = $this->mysqli->query($sql);
         }
 
-        public function selectleftjoinauth($where){
-            $sql = "SELECT * FROM users LEFT JOIN roles ON roles.id = users.user_role_id WHERE $where";
+        public function selectleftjoinauth($where,$attributes){
+            $attributess = implode(',', $attributes);
+            $sql = "SELECT $attributess FROM users LEFT JOIN roles ON roles.id = users.user_role_id WHERE $where";
             $this->sql = $result = $this->mysqli->query($sql);
         }
 
         public function selectDocuments($attributes,$where = null){
             $attributess = implode(',', $attributes);
             if ($where != null) {
-                $sql = "SELECT $attributess FROM documents LEFT JOIN categories ON documents.category_id = categories.id left JOIN users ON documents.user_id=users.id $where";
+                $sql = "SELECT $attributess FROM documents LEFT JOIN categories ON documents.category_id = categories.id left JOIN users ON documents.user_id=users.id WHERE $where";
             }else{
                 $sql = "SELECT $attributess FROM documents LEFT JOIN categories ON documents.category_id = categories.id left JOIN users ON documents.user_id=users.id";
             }

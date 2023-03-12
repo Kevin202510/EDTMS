@@ -42,7 +42,7 @@
                 $imageFileType = strtolower($imageFileType);
 
                 /* Valid extensions */
-                $valid_extensions = array("jpg","jpeg","png");
+                $valid_extensions = array("jpg","jpeg","png","pdf");
 
                 $response = 0;
                 /* Check file extension */
@@ -93,7 +93,7 @@
                 $imageFileType = strtolower($imageFileType);
 
                 /* Valid extensions */
-                $valid_extensions = array("jpg","jpeg","png");
+                $valid_extensions = array("jpg","jpeg","png","pptx");
 
                 $response = 0;
                 /* Check file extension */

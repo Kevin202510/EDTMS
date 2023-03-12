@@ -1,4 +1,6 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <input type="hidden" id="active_user_id" value="<?php echo $_SESSION['user_active_id']; ?>">
+    <input type="hidden" id="active_user_email" value="<?php echo $_SESSION['userEmail']; ?>">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo" href="index.html">NEUST E-Document <br> Tracking System</a>
         <a class="navbar-brand brand-logo-mini" href="index.php"><img src="../assets/images/logo.svg" alt="logo"/></a>

@@ -10,10 +10,17 @@
       <div class="modal-body">
         <form method="post" id="formData">
             <input type="hidden" name="id" id="id">
-            <input type="hidden" name="user_id" id="user_id" value="3">
+            <input type="hidden" name="email" id="email" value="<?php echo $_SESSION['userEmail'];  ?>">
+            <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_active_id']; ?>">
+            <div class="col-md-4 text-center"> 
+                <label for="file_document_name" class="form-label">Document Upload
+                    <img id="filedocumentname" src="../assets/images/profiles/userlogomale.png" onerror="this.onerror=null;this.src='../assets/img/brandlogos/rusilogo.png'" class="img-thumbnail" style="height:300px">
+                    <input class="form-control" style="display:none;" name="file_document_name" type="file" id="file_document_name">
+                </label>
+            </div>
             <div class="mb-3">
-                <label class="form-label">Filename</label>
-                <input type="text" class="form-control" id="file_document_name" name="file_document_name">
+                <label class="form-label">Document Name</label>
+                <input type="text" class="form-control" id="document_name" name="document_name">
             </div>
             <div class="mb-3">
                     <label class="form-label">Category</label>

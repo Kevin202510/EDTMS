@@ -17,12 +17,14 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          <?php if($_SESSION['userRoleId']==1){ ?>
           <li class="nav-item">
             <a class="nav-link" href="../pages/rolesTable.php">
               <i class="icon-lock menu-icon"></i>
               <span class="menu-title">Roles</span>
             </a>
           </li>
+          <?php } ?>
           <li class="nav-item">
             <a class="nav-link" href="../pages/usersTable.php">
               <i class="fa fa-users menu-icon"></i>
