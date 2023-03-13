@@ -1,4 +1,4 @@
-import fetch from "../modules/fetcher1.js";
+import fetch from "../modules/fetcher.js";
 
 $("body").on("click", "#edit", async (e) =>
   state.show($(e.currentTarget).data("id"))
@@ -6,21 +6,30 @@ $("body").on("click", "#edit", async (e) =>
 $("body").on("click", "#delete", (e) =>
   state.delete($(e.currentTarget).data("id"))
 );
+$("body").on("click", "#view", (e) =>
+  state.view($(e.currentTarget).data("id"))
+);
 
 $("#filesearch").keyup(function () {
-    var value = $("#filesearch").val().toLowerCase();
-    $("#main-table tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
+  var value = $("#filesearch").val().toLowerCase();
+  $("#main-table tr").filter(function () {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
   });
+});
 
 const state = {
   entity: "documents",
-  attributes: ["category_name","file_document_name","created_at","updated_at"],
+  attributes: [
+    "category_name",
+    "file_document_name",
+    "created_at",
+    "updated_at",
+  ],
   model: [],
   activeIndex: 0,
   btnSave: document.getElementById("btn-mul"),
   inputMethod: document.getElementById("method"),
+  user_id: document.getElementById("active_user_id").value,
 
   btnNew: document.getElementById("create-new"),
 
@@ -32,7 +41,7 @@ const state = {
   ask: () => {
     $.get(
       "" + state.entity + "/" + state.entity + "Crud.php",
-      { getData: "getData" },
+      { user_id: state.user_id, getData: "getData" },
       function (data, status) {
         var datas = JSON.parse(data);
         $.each(datas, function (index, value) {
@@ -53,8 +62,14 @@ const state = {
   save: async (e) => {
     e.preventDefault();
     let params = $("#formData").serializeArray();
+    var fd = new FormData();
     // console.log(params);
-    let model = await fetch.save(state.entity, params);
+    params.forEach((para) => {
+      fd.append(para.name, para.value);
+    });
+    fd.append("file", $("#file_document_name")[0].files[0]);
+
+    let model = await fetch.save(state.entity, fd);
     if (model) {
       $("#exampleModal").modal("hide");
       state.model = [];
@@ -69,9 +84,24 @@ const state = {
     state.btnSave.removeEventListener("click", state.save);
     fetch.showOnModal(state.model[i]);
   },
+  view: (i) => {
+    // fetch.showOnModalView(state.model[i]);
+    $("#viewDocument").modal("show");
+    $("#documentto").attr(
+      "src",
+      `../assets/documents/${state.model[i].email}/${state.model[i].file_document_name}`
+    );
+  },
   update: async () => {
     let params = $("#formData").serializeArray();
-    let model = await fetch.update(state.entity, params);
+    var fd = new FormData();
+    // console.log(params);
+    params.forEach((para) => {
+      fd.append(para.name, para.value);
+    });
+    fd.append("file", $("#file_document_name")[0].files[0]);
+
+    let model = await fetch.save(state.entity, fd);
     if (model) {
       $("#exampleModal").modal("hide");
       state.model = [];

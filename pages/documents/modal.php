@@ -10,10 +10,17 @@
       <div class="modal-body">
         <form method="post" id="formData">
             <input type="hidden" name="id" id="id">
-            <input type="hidden" name="user_id" id="user_id" value="3">
+            <input type="hidden" name="email" id="email" value="<?php echo $_SESSION['userEmail'];  ?>">
+            <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_active_id']; ?>">
+            <div class="col-md-4 text-center"> 
+                <label for="file_document_name" class="form-label">Document Upload <span>Note: Only PDF file Accepted</span>
+                    <img id="filedocumentname" src="../assets/images/profiles/userlogomale.png" onerror="this.onerror=null;this.src='../assets/img/brandlogos/rusilogo.png'" class="img-thumbnail" style="height:300px">
+                    <input class="form-control" style="display:none;" name="file_document_name" type="file" id="file_document_name">
+                </label>
+            </div>
             <div class="mb-3">
-                <label class="form-label">Filename</label>
-                <input type="text" class="form-control" id="file_document_name" name="file_document_name">
+                <label class="form-label">Document Name</label>
+                <input type="text" class="form-control" id="document_name" name="document_name">
             </div>
             <div class="mb-3">
                     <label class="form-label">Category</label>
@@ -47,6 +54,28 @@
                 <button type="button" name="addNew" id="btn-mul" class="btn btn-primary">Save changes</button>
             </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="viewDocument" tabindex="-1" aria-labelledby="viewDocumentLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewDocumentLabel">View Document</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <embed
+          id="documentto"
+          src="#"
+          type="application/pdf"
+          width="100%"
+          height="1000"
+        />
       </div>
     </div>
   </div>
