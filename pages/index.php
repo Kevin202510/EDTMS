@@ -37,8 +37,8 @@
                     <div class="card">
                       <div class="card-body">
                           <h4 class="card-title">Document / Files</h4>
-                          <p>Total of 0 documents</p>
-                          <h4 class="text-dark font-weight-bold mb-2">0</h4>
+                          <p>Total of <span id="totalDocument"></span> documents</p>
+                          <h4 class="text-dark font-weight-bold mb-2" id="totalDocu">0</h4>
                           <canvas id="orders"></canvas>
                       </div>
                     </div>
