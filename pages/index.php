@@ -80,3 +80,4 @@
   </div>
   <!-- container-scroller -->
   <?php include('layouts/script.php'); ?>
+  <script src="layouts/index.js"></script>

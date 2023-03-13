@@ -12,11 +12,14 @@
             <input type="hidden" name="id" id="id">
             <input type="hidden" name="email" id="email" value="<?php echo $_SESSION['userEmail'];  ?>">
             <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_active_id']; ?>">
-            <div class="col-md-4 text-center"> 
-                <label for="file_document_name" class="form-label">Document Upload <span>Note: Only PDF file Accepted</span>
-                    <img id="filedocumentname" src="../assets/images/profiles/userlogomale.png" onerror="this.onerror=null;this.src='../assets/img/brandlogos/rusilogo.png'" class="img-thumbnail" style="height:300px">
-                    <input class="form-control" style="display:none;" name="file_document_name" type="file" id="file_document_name">
-                </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01" style="height:35px"><i class="icon-file menu-icon"></i></span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file_document_name" name="file_document_name">
+                <label class="custom-file-label" for="file_document_name">Choose file</label>
+              </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Document Name</label>

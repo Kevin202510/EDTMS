@@ -12493,7 +12493,7 @@ input[type="button"].btn-block {
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   margin: 0;
-  opacity: 0;
+  /* opacity: 0.5; */
 }
 
 .custom-file-input:focus ~ .custom-file-label {

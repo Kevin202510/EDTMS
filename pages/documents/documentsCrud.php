@@ -15,6 +15,16 @@
             $res[] = $datass;
         }
         echo json_encode($res);
+    }else if(isset($_GET['selectAll'])){
+        // $whereClause = "documents.user_id=".$_GET['user_id']."";
+        $DBCRUDAPI->select("documents","*");
+        $data = $DBCRUDAPI->sql;
+        $res = array();
+        // var_dump($data);
+        while($datass = mysqli_fetch_assoc($data)){
+            $res[] = $datass;
+        }
+        echo json_encode($res);
     }
     else{
         if(isset($_POST['addNew'])){
